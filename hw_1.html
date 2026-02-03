@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Decimal to 6-bit Binary Conversion</title>
+    <link rel="stylesheet" href="hw_1.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async 
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    </script>
+</head>
+<body>
+    <h1>Problem 1</h1>
+    <div class="tables-container">
+        <div class="table-wrapper">
+            <h3>Unsigned (range: 0 to 63)</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Decimal</th>
+                        <th>6-bit Binary</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>0</td><td><code>000000</code></td></tr>
+                    <tr><td>13</td><td><code>001101</code></td></tr>
+                    <tr><td>24</td><td><code>011000</code></td></tr>
+                    <tr><td>63</td><td><code>111111</code></td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="table-wrapper">
+            <h3>Signed (range: –32 to +31)</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Decimal</th>
+                        <th>6-bit Binary</th>
+                        <th>Explanation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>16</td>
+                        <td><code>010000</code></td>
+                        <td class="explanation">Positive → same as unsigned</td>
+                    </tr>
+                    <tr>
+                        <td>–2</td>
+                        <td><code>111110</code></td>
+                        <td class="explanation"><code>2 = 000010</code> → invert + 1</td>
+                    </tr>
+                    <tr>
+                        <td>31</td>
+                        <td><code>011111</code></td>
+                        <td class="explanation">Max positive</td>
+                    </tr>
+                    <tr>
+                        <td>–32</td>
+                        <td><code>100000</code></td>
+                        <td class="explanation">Most negative</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <h1>Problem 2</h1>
+    <div class="tables-container">
+        <div class="table-wrapper">
+            <h3>6-bit Binary → Decimal</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Binary</th>
+                        <th>Unsigned</th>
+                        <th>Signed</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>000101</code></td>
+                        <td>5</td>
+                        <td>5</td>
+                    </tr>
+                    <tr>
+                        <td><code>101011</code></td>
+                        <td>43</td>
+                        <td>–21</td>
+                    </tr>
+                    <tr>
+                        <td><code>111111</code></td>
+                        <td>63</td>
+                        <td>–1</td>
+                    </tr>
+                    <tr>
+                        <td><code>100000</code></td>
+                        <td>32</td>
+                        <td>–32</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="table-wrapper">
+            <h3>Formulas</h3>
+            <div class="formula-box">
+                <p><strong>Unsigned:</strong><br>
+                \( \text{value} = b_5 \cdot 2^5 + b_4 \cdot 2^4 + b_3 \cdot 2^3 + b_2 \cdot 2^2 + b_1 \cdot 2^1 + b_0 \cdot 2^0 \)</p>
+
+                <p><strong>Signed (two’s complement):</strong><br>
+                \( \text{value} = -b_5 \cdot 2^5 + b_4 \cdot 2^4 + b_3 \cdot 2^3 + b_2 \cdot 2^2 + b_1 \cdot 2^1 + b_0 \cdot 2^0 \)</p>
+                <p><strong>General case</strong><br>
+                    $$
+                    \text{value} = -b_5 \cdot 2^5 + \sum_{i=0}^{4} b_i \cdot 2^i
+                    $$</p>
+            </div>
+            </div>
+        </div>
+    </div>
+        
+    <h1>Problem 3</h1>
+    <div class="single-table-container">
+        <h3>Decimal → 8-bit Hexadecimal</h3>
+        <table class="single-table">
+            <thead>
+                <tr>
+                    <th>Decimal</th>
+                    <th>Hexadecimal</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>7</td><td><code>0x07</code></td></tr>
+                <tr><td>240</td><td><code>0xF0</code></td></tr>
+                <tr><td>171</td><td><code>0xAB</code></td></tr>
+                <tr><td>126</td><td><code>0x7E</code></td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h1>Problem 4</h1>
+    <div class="single-table-container">
+        <h3>Hexadecimal → 8-bit Binary</h3>
+        <table class="single-table">
+            <thead>
+                <tr>
+                    <th>Hexadecimal</th>
+                    <th>Binary</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><code>0x3C</code></td><td><code>00111100</code></td></tr>
+                <tr><td><code>0x7E</code></td><td><code>01111110</code></td></tr>
+                <tr><td><code>0xFF</code></td><td><code>11111111</code></td></tr>
+                <tr><td><code>0xA5</code></td><td><code>10100101</code></td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h1>Problem 5</h1>
+    <div class="single-table-container">
+        <h3>Negate Binary Values (Two’s Complement)</h3>
+        <p>Negation = invert all bits + add 1.</p>
+        <table class="single-table">
+            <thead>
+                <tr>
+                    <th>Original</th>
+                    <th>Negated</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><code>00111100</code></td><td><code>11000100</code></td></tr>
+                <tr><td><code>01111110</code></td><td><code>10000010</code></td></tr>
+                <tr><td><code>11111111</code></td><td><code>00000001</code></td></tr>
+                <tr><td><code>10100101</code></td><td><code>01011011</code></td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h1>Problem 6</h1>
+    <div class="single-table-container">
+        <h3>Endianness of <code>0xDEADBEEF</code></h3>
+        <p>Assume 32-bit word stored in 4 consecutive bytes.</p>
+        <table class="single-table">
+            <thead>
+                <tr>
+                    <th>Convention</th>
+                    <th>Memory Layout (low → high address)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Big-Endian</strong></td>
+                    <td><code>DE</code> <code>AD</code> <code>BE</code> <code>EF</code></td>
+                </tr>
+                <tr>
+                    <td><strong>Little-Endian</strong></td>
+                    <td><code>EF</code> <code>BE</code> <code>AD</code> <code>DE</code></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h1>Problem 7</h1>
+    <div class="single-table-container">
+        <h3>5-bit → 8-bit Extension</h3>
+        <table class="single-table">
+            <thead>
+                <tr>
+                    <th>Decimal</th>
+                    <th>5-bit</th>
+                    <th>Zero-Extended (8-bit)</th>
+                    <th>Sign-Extended (8-bit)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>7</td>
+                    <td><code>00111</code></td>
+                    <td><code>00000111</code></td>
+                    <td><code>00000111</code></td>
+                </tr>
+                <tr>
+                    <td>15</td>
+                    <td><code>01111</code></td>
+                    <td><code>00001111</code></td>
+                    <td><code>00001111</code></td>
+                </tr>
+                <tr>
+                    <td>–16</td>
+                    <td><code>10000</code></td>
+                    <td><code>00010000</code></td>
+                    <td><code>11110000</code></td>
+                </tr>
+                <tr>
+                    <td>–5</td>
+                    <td><code>11011</code></td>
+                    <td><code>00011011</code></td>
+                    <td><code>11111011</code></td>
+                </tr>
+            </tbody>
+        </table>
+        <p style="font-size: 0.9em; margin-top: 10px;">
+        </p>
+    </div>
+
+    <h1>Problem 8</h1>
+    <div class="text-card">
+        <h3>4-bit Binary Addition</h3>
+
+        <h4>1. Unsigned Numbers (7, 9)</h4>
+        <p><strong>Convert to 4-bit Binary</strong></p>
+        <ul>
+            <li>7 → <code>0111</code></li>
+            <li>9 → <code>1001</code></li>
+        </ul>
+
+        <p><strong>Binary Addition</strong><br>
+        <code>0111 + 1001 = 10000</code></p>
+
+        <p><strong>Result</strong></p>
+        <ul>
+            <li>4-bit result: <code>0000</code></li>
+            <li>Carry out: <code>1</code></li>
+            <li>Decimal result: <strong>16</strong> (overflow in 4-bit unsigned representation)</li>
+        </ul>
+
+        <hr>
+
+        <h4>2. Signed Numbers (4, -5)<br>
+        <span style="font-weight: normal; color: #4a5568;">(Using 4-bit Two’s Complement)</span></h4>
+
+        <p><strong>Convert to 4-bit Binary</strong></p>
+        <ul>
+            <li>4 → <code>0100</code></li>
+        </ul>
+
+        <p><strong>Convert -5 to Two’s Complement</strong></p>
+        <ol>
+            <li>+5 → <code>0101</code></li>
+            <li>Invert bits → <code>1010</code></li>
+            <li>Add 1 → <code>1011</code></li>
+        </ol>
+
+        <p>-5 → <code>1011</code></p>
+
+        <p><strong>Binary Addition</strong><br>
+        <code>0100 + 1011 = 1111</code></p>
+
+        <p><strong>Result</strong></p>
+        <ul>
+            <li>Binary: <code>1111</code></li>
+            <li>Decimal (Two’s Complement): <strong>-1</strong></li>
+        </ul>
+    </div>
+</body>
+</html>
