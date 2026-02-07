@@ -12,24 +12,96 @@
 </head>
 <body>
     <h1>Problem 1</h1>
-    <div class="tables-container">
-        <div class="table-wrapper">
-            <h3>Unsigned (range: 0 to 63)</h3>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Decimal</th>
-                        <th>6-bit Binary</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr><td>0</td><td><code>000000</code></td></tr>
-                    <tr><td>13</td><td><code>001101</code></td></tr>
-                    <tr><td>24</td><td><code>011000</code></td></tr>
-                    <tr><td>63</td><td><code>111111</code></td></tr>
-                </tbody>
-            </table>
-        </div>
+    <pre><code>#(x + 5) - (y - 7)
+#2 * x * x - 3 * y + 4
+#(x + 5) / y + 10 / (y - 1)
+#(x / y) * y + x % y
+#x &gt; y ? 1 : 0
+
+.data
+newline: .asciz "\n"
+
+.text
+# read x
+li a7, 5
+ecall
+mv t0, a0
+
+# read y
+li a7, 5
+ecall
+mv t1, a0
+
+# (x + 5) - (y - 7)
+addi t2, t0, 5
+addi t3, t1, -7
+sub  t4, t2, t3
+
+li a7, 1
+mv a0, t4
+ecall
+
+li a7, 11
+li a0, '\n'
+ecall
+
+# 2 * x * x - 3 * y + 4
+mul t2, t0, t0
+slli t2, t2, 1
+li t3, 3
+mul t3, t3, t1
+sub t4, t2, t3
+addi t4, t4, 4
+
+li a7, 1
+mv a0, t4
+ecall
+
+li a7, 11
+li a0, '\n'
+ecall
+
+# (x + 5) / y + 10 / (y - 1)
+addi t2, t0, 5
+div  t2, t2, t1
+addi t3, t1, -1
+li t4, 10
+div t4, t4, t3
+add t5, t2, t4
+
+li a7, 1
+mv a0, t5
+ecall
+
+li a7, 11
+li a0, '\n'
+ecall
+
+# (x / y) * y + x % y
+div t2, t0, t1
+mul t2, t2, t1
+rem t3, t0, t1
+add t4, t2, t3
+
+li a7, 1
+mv a0, t4
+ecall
+
+li a7, 11
+li a0, '\n'
+ecall
+
+# x &gt; y ? 1 : 0
+slt t2, t1, t0
+
+li a7, 1
+mv a0, t2
+ecall
+
+li a7, 11
+li a0, '\n'
+ecall
+</code></pre>
 
         <div class="table-wrapper">
             <h3>Signed (range: –32 to +31)</h3>
