@@ -12,96 +12,98 @@
 </head>
 <body>
     <h1>Problem 1</h1>
-    <pre><code>#(x + 5) - (y - 7)
-#2 * x * x - 3 * y + 4
-#(x + 5) / y + 10 / (y - 1)
-#(x / y) * y + x % y
-#x &gt; y ? 1 : 0
+    <div class="text-card">
+        <pre><code>#(x + 5) - (y - 7)
+            #2 * x * x - 3 * y + 4
+            #(x + 5) / y + 10 / (y - 1)
+            #(x / y) * y + x % y
+            #x &gt; y ? 1 : 0
 
-.data
-newline: .asciz "\n"
+            .data
+            newline: .asciz "\n"
 
-.text
-# read x
-li a7, 5
-ecall
-mv t0, a0
+            .text
+            # read x
+            li a7, 5
+            ecall
+            mv t0, a0
 
-# read y
-li a7, 5
-ecall
-mv t1, a0
+            # read y
+            li a7, 5
+            ecall
+            mv t1, a0
 
-# (x + 5) - (y - 7)
-addi t2, t0, 5
-addi t3, t1, -7
-sub  t4, t2, t3
+            # (x + 5) - (y - 7)
+            addi t2, t0, 5
+            addi t3, t1, -7
+            sub  t4, t2, t3
 
-li a7, 1
-mv a0, t4
-ecall
+            li a7, 1
+            mv a0, t4
+            ecall
 
-li a7, 11
-li a0, '\n'
-ecall
+            li a7, 11
+            li a0, '\n'
+            ecall
 
-# 2 * x * x - 3 * y + 4
-mul t2, t0, t0
-slli t2, t2, 1
-li t3, 3
-mul t3, t3, t1
-sub t4, t2, t3
-addi t4, t4, 4
+            # 2 * x * x - 3 * y + 4
+            mul t2, t0, t0
+            slli t2, t2, 1
+            li t3, 3
+            mul t3, t3, t1
+            sub t4, t2, t3
+            addi t4, t4, 4
 
-li a7, 1
-mv a0, t4
-ecall
+            li a7, 1
+            mv a0, t4
+            ecall
 
-li a7, 11
-li a0, '\n'
-ecall
+            li a7, 11
+            li a0, '\n'
+            ecall
 
-# (x + 5) / y + 10 / (y - 1)
-addi t2, t0, 5
-div  t2, t2, t1
-addi t3, t1, -1
-li t4, 10
-div t4, t4, t3
-add t5, t2, t4
+            # (x + 5) / y + 10 / (y - 1)
+            addi t2, t0, 5
+            div  t2, t2, t1
+            addi t3, t1, -1
+            li t4, 10
+            div t4, t4, t3
+            add t5, t2, t4
 
-li a7, 1
-mv a0, t5
-ecall
+            li a7, 1
+            mv a0, t5
+            ecall
 
-li a7, 11
-li a0, '\n'
-ecall
+            li a7, 11
+            li a0, '\n'
+            ecall
 
-# (x / y) * y + x % y
-div t2, t0, t1
-mul t2, t2, t1
-rem t3, t0, t1
-add t4, t2, t3
+            # (x / y) * y + x % y
+            div t2, t0, t1
+            mul t2, t2, t1
+            rem t3, t0, t1
+            add t4, t2, t3
 
-li a7, 1
-mv a0, t4
-ecall
+            li a7, 1
+            mv a0, t4
+            ecall
 
-li a7, 11
-li a0, '\n'
-ecall
+            li a7, 11
+            li a0, '\n'
+            ecall
 
-# x &gt; y ? 1 : 0
-slt t2, t1, t0
+            # x &gt; y ? 1 : 0
+            slt t2, t1, t0
 
-li a7, 1
-mv a0, t2
-ecall
+            li a7, 1
+            mv a0, t2
+            ecall
 
-li a7, 11
-li a0, '\n'
-ecall
-</code></pre>
+            li a7, 11
+            li a0, '\n'
+            ecall
+            </code></pre>
+    </div>
 
         <div class="table-wrapper">
             <h3>Signed (range: –32 to +31)</h3>
